@@ -9,10 +9,7 @@ const Page = () => {
   const [loading, setLoading] = useState(false)
   const router = useRouter()
   const { checkAuth, isAuth } = useAuth()
-  useEffect(() => {
-    checkAuth()
-    if (isAuth) handleClick()
-  }, [isAuth,checkAuth])
+
   const handleClick = () => {
     setLoading(true)
     router.push('/auth/login')
