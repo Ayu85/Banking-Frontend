@@ -3,14 +3,15 @@ import { Button } from '@/components/ui/button'
 import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Loader from '@/components/Loader'
+import useAuth from './store/useAuth'
 
 const Page = () => {
   const [loading, setLoading] = useState(false)
   const router = useRouter()
-  
-  useEffect(()=>{
-
-  },[])
+  const { checkAuth } = useAuth()
+  useEffect(() => {
+    checkAuth()
+  }, [])
   const handleClick = () => {
     setLoading(true)
     router.push('/auth/login')
