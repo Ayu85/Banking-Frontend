@@ -11,6 +11,7 @@ const useAuth = create(set => ({
     const auth = await axiosIns.get('/auth/checkauth')
     set({ isAuth: true })
     set({ authUser: auth.data.user })
+    
   }
 }))
 export default useAuth
