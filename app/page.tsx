@@ -1,9 +1,29 @@
-import React from 'react'
+'use client'
+import { Button } from '@/components/ui/button'
+import React, { useEffect, useState } from 'react'
+import { useRouter } from 'next/navigation'
+import Loader from '@/components/Loader'
 
-const page = () => {
+const Page = () => {
+  const [loading, setLoading] = useState(false)
+  const router = useRouter()
+  
+  useEffect(()=>{
+
+  },[])
+  const handleClick = () => {
+    setLoading(true)
+    router.push('/auth/login')
+  }
+
   return (
-    <div>page</div>
+    <div>
+      <Button onClick={handleClick} disabled={loading}>
+        {loading ? 'Redirecting...' : 'Proceed To Login'}
+      </Button>
+      {loading && <Loader />} {/* Custom loader here */}
+    </div>
   )
 }
 
-export default page
+export default Page
