@@ -22,7 +22,7 @@ const layout = () => {
         variant: 'default',
         title: 'Logged in!'
       })
-      login()
+      login(res.data.user)
     } catch (error) {
       console.log(error)
 

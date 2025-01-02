@@ -14,7 +14,7 @@ const AuthCheck = () => {
   useEffect(() => {
     checkAuth()
     setLoading(false)
-  }, [checkAuth])
+  }, [checkAuth,isAuth])
 
   useEffect(() => {
     // If the user is not authenticated and the loading state is finished, redirect
