@@ -12,7 +12,7 @@ import {
 import { Button } from './ui/button'
 
 const Navbar = () => {
-  const { isAuth, authUser,logout } = useAuth()
+  const { isAuth, authUser, logout } = useAuth()
   return (
     <div className='flex justify-between  p-4 dark:shadow-lg dark:shadow-zinc-900'>
       <h1 className='text-xl font-semibold text-[#4582EC] flex items-center  cursor-pointer justify-center gap-1'>
@@ -22,16 +22,23 @@ const Navbar = () => {
       <div className='flex items-center gap-4'>
         <ModeToggle />
         <div>
-          <Popover>
-            <h1 className='uppercase bg-blue-500 text-white w-8 aspect-square rounded-full text-center poppins-semibold flex justify-center items-center cursor-pointer'>
-              <PopoverTrigger>
-                {authUser?.fullname?.substr(0, 1)}
-              </PopoverTrigger>
-            </h1>
-            <PopoverContent onClick={()=>logout()} className='w-28 h-10 bg-none relative'>
-              <Button  variant='destructive' className='h-7 absolute top-1'>Logout</Button>
-            </PopoverContent>
-          </Popover>
+          {authUser && (
+            <Popover>
+              <h1 className='uppercase bg-blue-500 text-white w-8 aspect-square rounded-full text-center poppins-semibold flex justify-center items-center cursor-pointer'>
+                <PopoverTrigger>
+                  {authUser?.fullname?.substr(0, 1)}
+                </PopoverTrigger>
+              </h1>
+              <PopoverContent
+                onClick={() => logout()}
+                className='w-28 h-10 bg-none relative'
+              >
+                <Button variant='destructive' className='h-7 absolute top-1'>
+                  Logout
+                </Button>
+              </PopoverContent>
+            </Popover>
+          )}
         </div>
       </div>
     </div>

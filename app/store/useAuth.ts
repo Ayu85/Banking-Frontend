@@ -1,11 +1,23 @@
 import { create } from 'zustand'
 import { axiosIns } from '../utils/axiosIns'
 import { toast } from '@/hooks/use-toast'
-
-const useAuth = create(set => ({
+interface AuthState {
+  isAuth: boolean
+  authUser: null | User
+  login: (user: User) => void
+  checkAuth: () => void
+  logout: () => void
+}
+interface User {
+  id: number
+  contact: string
+  fullname: string
+  email: string
+}
+const useAuth = create<AuthState>(set => ({
   isAuth: false,
   authUser: null,
-  login: user => {
+  login: (user: User) => {
     set({ authUser: user })
     set({ isAuth: true })
   },
