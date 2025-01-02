@@ -10,22 +10,16 @@ const AuthCheck = () => {
   const { checkAuth, isAuth, authUser } = useAuth()
   const [loading, setLoading] = useState(true)
   const router = useRouter()
-
-  useEffect(() => {
-    checkAuth()
-    setLoading(false)
-  }, [checkAuth, isAuth])
-
   useEffect(() => {
     // If the user is not authenticated and the loading state is finished, redirect
     setLoading(true)
+    checkAuth()
     if (isAuth) {
       router.push('/user/dashboard')
       setLoading(false)
     } else {
       router.push('/auth/login')
       setLoading(false)
-
     }
     console.log(authUser)
   }, [isAuth, loading, router])

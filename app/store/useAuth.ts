@@ -18,8 +18,7 @@ const useAuth = create<AuthState>(set => ({
   isAuth: false,
   authUser: null,
   login: (user: User) => {
-    set({ authUser: user })
-    set({ isAuth: true })
+    set({ authUser: user,  isAuth: true })
   },
   checkAuth: async () => {
     const auth = await axiosIns.get('/auth/checkauth')

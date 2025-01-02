@@ -1,18 +1,21 @@
 'use client'
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Button } from '@/components/ui/button'
 import { axiosIns } from '@/app/utils/axiosIns'
 import { useToast } from '@/hooks/use-toast'
 import useAuth from '@/app/store/useAuth'
+import Loader from '@/components/Loader'
 
 const layout = () => {
   const { toast } = useToast()
   const { isAuth, login } = useAuth()
+  const [loading, setLoading] = useState(false)
   const email = useRef('')
   const password = useRef('')
   const handlelogin = async () => {
+    setLoading(true)
     try {
       const res = await axiosIns.post('/auth/login', {
         email: email.current,
@@ -23,16 +26,19 @@ const layout = () => {
         title: 'Logged in!'
       })
       login(res.data.user)
+      setLoading(false)
     } catch (error) {
       console.log(error)
-
       toast({
         variant: 'destructive',
         title: error.response.data.msg
       })
+      setLoading(false)
     }
   }
-  return (
+  return loading ? (
+    <Loader />
+  ) : (
     <div className='flex justify-center flex-col  items-center h-[90vh]  overflow-hidden'>
       <div className='flex flex-col gap-4 border-zinc-600 rounded-lg border p-10'>
         <h1 className='text-2xl  poppins-semibold'>Please Login to continue</h1>
