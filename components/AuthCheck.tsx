@@ -18,7 +18,7 @@ const AuthCheck = () => {
       router.push('/user/dashboard')
       setLoading(false)
     } else {
-      router.push('/auth/login')
+      router.push('/login')
       setLoading(false)
     }
     console.log(authUser)

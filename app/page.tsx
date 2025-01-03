@@ -10,16 +10,10 @@ const Page = () => {
   const router = useRouter()
   const { checkAuth, isAuth } = useAuth()
 
-  const handleClick = () => {
-    setLoading(true)
-    router.push('/auth/login')
-  }
 
   return (
-    <div>
-      <Button onClick={handleClick} disabled={loading}>
-        {loading ? 'Redirecting...' : 'Proceed To Login'}
-      </Button>
+    <div className='flex items-center justify-center text-3xl poppins-bold'>
+      <h1>Welcome to Peonio</h1>
       {loading && <Loader />} {/* Custom loader here */}
     </div>
   )
